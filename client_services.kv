@@ -1,0 +1,378 @@
+# client_services.kv
+MDScreen:
+    name: "client_services"
+    MDNavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    MDTopAppBar:
+                        title: "Available Services"
+                        font_name: "Roboto"
+                        md_bg_color: 1, 0, 0, 1
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state()]]
+                        right_action_items: [["map-marker", lambda x: app.client_location_button()]]
+
+
+                    ScrollView:
+                        GridLayout:
+                            cols: 1
+                            spacing: dp(10)
+                            padding: dp(10)
+                            size_hint_y: None
+                            height: self.minimum_height
+                            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                            BoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: dp(185)
+                                md_bg_color: 1, 1, 1, 1
+
+                                MDCard:
+                                    orientation: 'vertical'
+                                    size_hint: None, None
+                                    size: "280dp", "180dp"
+                                    elevation: 2
+                                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+
+                                    BoxLayout:
+                                        Image:
+                                            source: 'images/doctor.jpg'
+                                            size_hint: (0.8, 0.8)
+                                            pos_hint: {'center_x': 0.2, 'center_y': 0.4}
+
+                                        BoxLayout:
+                                            orientation: 'vertical'
+                                            padding: dp(2)
+                                            spacing: dp(0)
+
+                                            MDLabel:
+                                                text: "Hospitals"
+                                                font_name: "Roboto"
+                                                theme_text_color: "Secondary"
+                                                pos_hint: {'center_x': 0.5,'center_y': 0.2}
+
+                                            MDLabel:
+                                                text: "Hospitals Address"
+                                                font_name: "Roboto"
+                                                theme_text_color: "Hint"
+                                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+                                            Button:
+                                                text: "Book Now"
+                                                font_name: "Roboto"
+                                                size_hint: None, None
+                                                size: "100dp", "30dp"
+                                                pos_hint: {'center_x': 0.5,'center_y': 0.9}
+                                                background_color: 0, 0, 0, 0
+                                                theme_text_color: "Custom"
+                                                text_color: 1, 1, 1, 1
+                                                font_style: "Button"
+                                                on_release:
+                                                    root.manager.transition.direction = "left"
+                                                    root.manager.current = "hospital_book"
+                                                canvas.before:
+                                                    Color:
+                                                        rgb: rgba(255, 0, 0, 255)
+                                                    RoundedRectangle:
+                                                        size: self.size
+                                                        pos: self.pos
+                                                        radius: [5]
+                            BoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: dp(185)
+                                md_bg_color: 1, 1, 1, 1
+                                MDCard:
+                                    orientation: 'vertical'
+                                    size_hint: None, None
+                                    size: "280dp", "180dp"
+                                    elevation: 2
+                                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                                    BoxLayout:
+                                        Image:
+                                            source: 'images/doctor.jpg'
+                                            size_hint: (0.8, 0.8)
+                                            pos_hint: {'center_x': 0.2, 'center_y': 0.4}
+
+                                        BoxLayout:
+                                            orientation: 'vertical'
+                                            padding: dp(2)
+                                            spacing: dp(0)
+
+                                            MDLabel:
+                                                text: "Ambulance"
+                                                font_name: "Roboto"
+                                                theme_text_color: "Secondary"
+                                                pos_hint: {'center_x': 0.5,'center_y': 0.2}
+
+                                            MDLabel:
+                                                text: "Ambulance Details"
+                                                font_name: "Roboto"
+                                                theme_text_color: "Hint"
+                                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+                                            Button:
+                                                text: "Book Now"
+                                                font_name: "Roboto"
+                                                size_hint: None, None
+                                                size: "100dp", "30dp"
+                                                pos_hint: {'center_x': 0.5,'center_y': 0.9}
+                                                background_color: 0, 0, 0, 0
+                                                theme_text_color: "Custom"
+                                                text_color: 1, 1, 1, 1
+                                                font_style: "Button"
+                                                on_release:
+                                                    root.manager.transition.direction = "right"
+                                                    root.manager.current = "hospital_book"
+                                                canvas.before:
+                                                    Color:
+                                                        rgb: rgba(255, 0, 0, 255)
+                                                    RoundedRectangle:
+                                                        size: self.size
+                                                        pos: self.pos
+                                                        radius: [5]
+                            BoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: dp(185)
+                                md_bg_color: 1, 1, 1, 1
+
+                                MDCard:
+                                    orientation: 'vertical'
+                                    size_hint: None, None
+                                    size: "280dp", "180dp"
+                                    elevation: 2
+                                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                                    BoxLayout:
+                                        Image:
+                                            source: 'images/doctor.jpg'
+                                            size_hint: (0.8, 0.8)
+                                            pos_hint: {'center_x': 0.2, 'center_y': 0.4}
+
+                                        BoxLayout:
+                                            orientation: 'vertical'
+                                            padding: dp(2)
+                                            spacing: dp(0)
+
+                                            MDLabel:
+                                                text: "Gym"
+                                                font_name: "Roboto"
+                                                theme_text_color: "Secondary"
+                                                pos_hint: {'center_x': 0.5,'center_y': 0.2}
+
+                                            MDLabel:
+                                                text: "Gym Address"
+                                                font_name: "Roboto"
+                                                theme_text_color: "Hint"
+                                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+                                            Button:
+                                                text: "Book Now"
+                                                font_name: "Roboto"
+                                                size_hint: None, None
+                                                size: "100dp", "30dp"
+                                                pos_hint: {'center_x': 0.5,'center_y': 0.9}
+                                                background_color: 0, 0, 0, 0
+                                                theme_text_color: "Custom"
+                                                text_color: 1, 1, 1, 1
+                                                font_style: "Button"
+                                                on_release:
+                                                    root.manager.transition.direction = "right"
+                                                    root.manager.current = "hospital_book"
+                                                canvas.before:
+                                                    Color:
+                                                        rgb: rgba(255, 0, 0, 255)
+                                                    RoundedRectangle:
+                                                        size: self.size
+                                                        pos: self.pos
+                                                        radius: [5]
+                            BoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: dp(185)
+                                md_bg_color: 1, 1, 1, 1
+                                MDCard:
+                                    orientation: 'vertical'
+                                    size_hint: None, None
+                                    size: "280dp", "180dp"
+                                    elevation: 2
+                                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                                    BoxLayout:
+                                        Image:
+                                            source: 'images/doctor.jpg'
+                                            size_hint: (0.8, 0.8)
+                                            pos_hint: {'center_x': 0.2, 'center_y': 0.4}
+
+                                        BoxLayout:
+                                            orientation: 'vertical'
+                                            padding: dp(2)
+                                            spacing: dp(0)
+
+                                            MDLabel:
+                                                text: "Home Setup"
+                                                font_name: "Roboto"
+                                                theme_text_color: "Secondary"
+                                                pos_hint: {'center_x': 0.5,'center_y': 0.2}
+
+                                            MDLabel:
+                                                text: "Home Setup Details"
+                                                font_name: "Roboto"
+                                                theme_text_color: "Hint"
+                                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+                                            Button:
+                                                text: "Book Now"
+                                                font_name: "Roboto"
+                                                size_hint: None, None
+                                                size: "100dp", "30dp"
+                                                pos_hint: {'center_x': 0.5,'center_y': 0.9}
+                                                background_color: 0, 0, 0, 0
+                                                theme_text_color: "Custom"
+                                                text_color: 1, 1, 1, 1
+                                                font_style: "Button"
+                                                on_release:
+                                                    root.manager.transition.direction = "right"
+                                                    root.manager.current = "hospital_book"
+                                                canvas.before:
+                                                    Color:
+                                                        rgb: rgba(255, 0, 0, 255)
+                                                    RoundedRectangle:
+                                                        size: self.size
+                                                        pos: self.pos
+                                                        radius: [5]
+
+
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            orientation: 'vertical'
+            size_hint_x:dp(290)
+            size_hint_max_x: "270dp"
+            padding: "0dp"
+            spacing: "5dp"
+
+            MDCard:
+                orientation: 'vertical'
+                size_hint: None, None
+                size: "268dp", "100dp"
+                elevation: 2
+                md_bg_color: 1, 1, 1, 1
+
+                BoxLayout:
+                    size_hint_y: None
+                    height: dp(90)
+                    padding: "15dp"
+
+                    BoxLayout:
+                        size_hint: None, None
+                        size: dp(60), dp(60)
+                        canvas:
+                            Color:
+                                rgb: 1, 1, 1
+                            Ellipse:
+                                pos: self.pos
+                                size: 60, 60
+                                source: 'images/doctor.jpg'
+                                angle_start: 0
+                                angle_end: 360
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: "5dp"
+                        spacing: "5dp"
+
+                        MDLabel:
+                            id: username
+                            text: "username"
+                            font_name: "MPoppins"
+                            theme_text_color: "Secondary"
+                            pos_hint: {'center_x': 0.5,'center_y': 0.2}
+
+                        MDLabel:
+                            id: email
+                            text: "clientemail@gmail.com"
+                            theme_text_color: "Hint"
+                            font_name: "MPoppins"
+                            font_size:'12sp'
+                            pos_hint: {'center_x': 0.5,'center_y': 0.1}
+
+            BoxLayout:
+                orientation: 'vertical'
+                ScrollView:
+                    MDList:
+                        id: md_list
+                        MDList:
+                            OneLineIconListItem:
+                                text: "Profile"
+                                on_release:
+                                    root.manager.transition.direction = "left"
+                                    root.manager.current = "menu_profile"
+                                IconLeftWidget:
+                                    icon: "account-circle"
+                                    on_release:
+                                        root.manager.transition.direction = "left"
+                                        root.manager.current = "menu_profile"
+                            OneLineIconListItem:
+                                text: "Notification"
+                                on_release:
+                                    root.manager.transition.direction = "left"
+                                    root.manager.current = "menu_notification"
+                                IconLeftWidget:
+                                    icon: "bell-outline"
+                                    on_release:
+                                        root.manager.transition.direction = "left"
+                                        root.manager.current = "menu_notification"
+
+                            OneLineIconListItem:
+                                text: "Bookings"
+                                on_release:
+                                    root.manager.transition.direction = "left"
+                                    root.manager.current = "menu_bookings"
+                                IconLeftWidget:
+                                    icon: "book-account-outline"
+                                    on_release:
+                                        root.manager.transition.direction = "left"
+                                        root.manager.current = "menu_bookings"
+
+                            OneLineIconListItem:
+                                text: "Reports"
+                                on_release:
+                                    root.manager.transition.direction = "left"
+                                    root.manager.current = "menu_reports"
+
+                                IconLeftWidget:
+                                    icon: "file-multiple"
+                                    on_release:
+                                        root.manager.transition.direction = "left"
+                                        root.manager.current = "menu_reports"
+
+                            OneLineIconListItem:
+                                text: "Support"
+                                on_release:
+                                    root.manager.transition.direction = "left"
+                                    root.manager.current = "menu_support"
+                                IconLeftWidget:
+                                    icon: "book-information-variant"
+                                    on_release:
+                                        root.manager.transition.direction = "left"
+                                        root.manager.current = "menu_support"
+
+                            OneLineIconListItem:
+                                text: "Settings"
+                                IconLeftWidget:
+                                    icon: "cog"
+
+                            OneLineIconListItem:
+                                text: "Logout"
+                                on_release:
+                                    root.manager.transition.direction = "right"
+                                    root.manager.current = "login"
+                                IconLeftWidget:
+                                    icon: "logout"
+                                    on_release: app.logout()
+
