@@ -1,0 +1,348 @@
+MDScreen:
+    name: 'slot_booking'
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .91}
+            user_font_size: "20sp"
+            theme_text_color: "Custom"
+            text_color: rgba(71, 92, 119, 255)
+            on_release:
+                app.slot_booking_back_button(self)
+#                root.manager.transition.direction = "right"
+#                root.manager.current = "hospital_book"
+
+        ScrollView:
+            GridLayout:
+                cols: 1
+                spacing: dp(10)
+                padding: dp(10)
+                size_hint_y: None
+                height: self.minimum_height
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: 0
+                    size_hint_y: None
+                    height: dp(60)
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint: None, None
+                        size: "280dp", "60dp"
+                        elevation: 2
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                        canvas.before:
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                                source: 'images/doctor.jpg'
+
+
+                        MDLabel:
+                            text: "Book a Slot"
+                            font_name: "Roboto"
+                            size_hint_x: 1
+                            halign: "center"
+                            valign: "top"
+                            bold: True
+                            color: 1, 0, 0, 1
+                            pos_hint: {"top": 1, "center_x": 0.5}
+
+                        MDFlatButton:
+                            size_hint: None, None
+                            size: dp(150), dp(35)  # Adjusted size
+                            halign: "left"
+                            md_bg_color: 0, 0, 0, 0
+                            on_release: app.slot_date_picker()
+
+                            BoxLayout:
+                                orientation: 'horizontal'
+                                MDLabel:
+                                    id: date_choosed
+                                    text: "Choose a date"
+                                    font_name: "Roboto"
+                                    text_color: 0, 0, 0, 1
+                                    theme_text_color: "Custom"
+
+                                    canvas.before:
+                                        Color:
+                                            rgba: 0.5, 0.5, 0.5, 1
+                                        Line:
+                                            points: self.x, self.y, self.x + self.width, self.y
+                                            width: 1
+
+                                MDIcon:
+                                    icon: "calendar-month-outline"
+                                    theme_text_color: "Custom"
+                                    text_color: 1, 0, 0, 1
+                                    size_hint_x: None
+                                    width: dp(24)
+                BoxLayout:
+                    orientation: 'vertical'
+                    padding: dp(2)
+                    size_hint_y: None
+                    height: "45dp"
+                    MDLabel:
+                        text: "Select Timings"
+                        font_name: "Roboto"
+                        size_hint_x: 1
+                        halign: "center"
+                        valign: "top"
+                        bold: True
+                        color: 1, 0, 0, 1
+                        pos_hint: {"top": 1}
+
+                        canvas:
+                            Color:
+                                rgba: 0, 0, 0, 1  # Red color with RGBA values
+                            Line:
+                                points: [self.x, self.y - 2, self.x + self.width, self.y - 2]
+                                width: 1
+
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: 0
+                    size_hint_y: None
+                    height: dp(240)
+                    md_bg_color: 1, 1, 1, 1
+
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint: None, None
+                        size: "280dp", "240dp"
+                        elevation: 2
+                        spacing: 5
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                        GridLayout:
+                            cols: 2
+                            spacing: dp(10)
+                            padding: dp(25)
+                            size_hint_y: None
+                            pos_hint: {"center_x":0.5}
+
+                            height: self.minimum_height
+
+                            MDFlatButton:
+                                id: 9am - 11am
+                                disabled: False
+                                size_hint: None, None
+                                size: dp(110), dp(58) # Adjusted size
+                                halign: "left"
+                                md_bg_color: 0, 0, 0, 0
+                                on_release: app.select_timings(self,FirstSlot.text)
+
+                                canvas:
+                                    Color:
+                                        rgba: 1, 0, 0, 1  # Red color with RGBA values
+                                    Line:
+                                        rectangle: self.x, self.y, self.width, self.height
+                                        width: dp(1.5)  # Adjust the width of the border
+                                BoxLayout:
+                                    orientation: 'vertical'
+                                    MDIcon:
+                                        icon: "bed-clock"
+                                        halign: "center"
+                                        theme_text_color: "Custom"
+                                        text_color: 0, 0, 0, 1
+                                        size_hint_x: None
+                                        width: dp(24)
+                                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                                    MDLabel:
+                                        id: FirstSlot
+                                        text: "9am - 11am"
+                                        font_name: "Roboto"
+                                        halign: "center"
+                                        text_color: 0, 0, 0, 1
+                                        theme_text_color: "Custom"
+
+                            MDFlatButton:
+                                id: 11am - 1pm
+                                disabled: False
+                                size_hint: None, None
+                                size: dp(110), dp(58) # Adjusted size
+                                halign: "left"
+                                md_bg_color: 0, 0, 0, 0
+                                on_release:
+                                    app.select_timings(self,SecondSlot.text)
+
+                                canvas:
+                                    Color:
+                                        rgba: 1, 0, 0, 1  # Red color with RGBA values
+                                    Line:
+                                        rectangle: self.x, self.y, self.width, self.height
+                                        width: dp(1.5)  # Adjust the width of the border
+                                BoxLayout:
+                                    orientation: 'vertical'
+                                    MDIcon:
+                                        icon: "bed-clock"
+                                        halign: "center"
+                                        theme_text_color: "Custom"
+                                        text_color: 0, 0, 0, 1
+                                        size_hint_x: None
+                                        width: dp(24)
+                                        pos_hint: {"center_x": 0.5, "center_y": 0.4}
+                                    MDLabel:
+                                        id: SecondSlot
+                                        text: "11am - 1pm"
+                                        font_name: "Roboto"
+                                        halign: "center"
+                                        text_color: 0, 0, 0, 1
+                                        theme_text_color: "Custom"
+
+
+                            MDFlatButton:
+                                id: 1pm - 3pm
+                                disabled: False
+                                size_hint: None, None
+                                size: dp(110), dp(58) # Adjusted size
+                                halign: "left"
+                                md_bg_color: 0, 0, 0, 0
+                                on_release:
+                                    app.select_timings(self,ThirdSlot.text)
+                                canvas:
+                                    Color:
+                                        rgba: 1, 0, 0, 1  # Red color with RGBA values
+                                    Line:
+                                        rectangle: self.x, self.y, self.width, self.height
+                                        width: dp(1.5)  # Adjust the width of the border
+                                BoxLayout:
+                                    orientation: 'vertical'
+                                    MDIcon:
+                                        icon: "bed-clock"
+                                        halign: "center"
+                                        theme_text_color: "Custom"
+                                        text_color: 0, 0, 0, 1
+                                        size_hint_x: None
+                                        width: dp(24)
+                                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                                    MDLabel:
+                                        id: ThirdSlot
+                                        text: "1pm - 3pm"
+                                        font_name: "Roboto"
+                                        halign: "center"
+                                        text_color: 0, 0, 0, 1
+                                        theme_text_color: "Custom"
+
+                            MDFlatButton:
+                                id: 3pm - 5pm
+                                disabled: False
+                                size_hint: None, None
+                                size: dp(110), dp(58) # Adjusted size
+                                halign: "left"
+                                md_bg_color: 0, 0, 0, 0
+                                on_release:
+                                    app.select_timings(self,ForthSlot.text)
+                                canvas:
+                                    Color:
+                                        rgba: 1, 0, 0, 1  # Red color with RGBA values
+                                    Line:
+                                        rectangle: self.x, self.y, self.width, self.height
+                                        width: dp(1.5)  # Adjust the width of the border
+                                BoxLayout:
+                                    orientation: 'vertical'
+                                    MDIcon:
+                                        icon: "bed-clock"
+                                        halign: "center"
+                                        theme_text_color: "Custom"
+                                        text_color: 0, 0, 0, 1
+                                        size_hint_x: None
+                                        width: dp(24)
+                                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                                    MDLabel:
+                                        id: ForthSlot
+                                        text: "3pm - 5pm"
+                                        font_name: "Roboto"
+                                        halign: "center"
+                                        text_color: 0, 0, 0, 1
+                                        theme_text_color: "Custom"
+
+
+
+                            MDFlatButton:
+                                id: 5pm - 7pm
+                                disabled: False
+                                size_hint: None, None
+                                size: dp(110), dp(58) # Adjusted size
+                                halign: "left"
+                                md_bg_color: 0, 0, 0, 0
+                                on_release:
+                                    app.select_timings(self,FifthSlot.text)
+                                canvas:
+                                    Color:
+                                        rgba: 1, 0, 0, 1  # Red color with RGBA values
+                                    Line:
+                                        rectangle: self.x, self.y, self.width, self.height
+                                        width: dp(1.5)  # Adjust the width of the border
+                                BoxLayout:
+                                    orientation: 'vertical'
+                                    MDIcon:
+                                        icon: "bed-clock"
+                                        halign: "center"
+                                        theme_text_color: "Custom"
+                                        text_color: 0, 0, 0, 1
+                                        size_hint_x: None
+                                        width: dp(24)
+                                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                                    MDLabel:
+                                        id: FifthSlot
+                                        text: "5pm - 7pm"
+                                        font_name: "Roboto"
+                                        halign: "center"
+                                        text_color: 0, 0, 0, 1
+                                        theme_text_color: "Custom"
+
+                            MDFlatButton:
+                                id: 7pm - 9pm
+                                disabled: False
+                                size_hint: None, None
+                                size: dp(110), dp(58) # Adjusted size
+                                halign: "left"
+                                md_bg_color: 0, 0, 0, 0
+                                on_release:
+                                    app.select_timings(self,SixthSlot.text)
+                                canvas:
+                                    Color:
+                                        rgba: 1, 0, 0, 1  # Red color with RGBA values
+                                    Line:
+                                        rectangle: self.x, self.y, self.width, self.height
+                                        width: dp(1.5)  # Adjust the width of the border
+                                BoxLayout:
+                                    orientation: 'vertical'
+                                    MDIcon:
+                                        icon: "bed-clock"
+                                        halign: "center"
+                                        theme_text_color: "Custom"
+                                        text_color: 0, 0, 0, 1
+                                        size_hint_x: None
+                                        width: dp(24)
+                                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                                    MDLabel:
+                                        id: SixthSlot
+                                        text: "7pm - 9pm"
+                                        font_name: "Roboto"
+                                        halign: "center"
+                                        text_color: 0, 0, 0, 1
+                                        theme_text_color: "Custom"
+
+        Button:
+            id: book_slot
+            text: "Pay Now"
+            size_hint_y:.1
+            size_hint_y: .1
+            background_color: 0, 0, 0, 0
+            font_name: "Roboto"
+            bold: True
+            on_release:
+                app.pay_now(self)
+            canvas.before:
+                Color:
+                    rgb: rgba(255, 0, 0, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [0]

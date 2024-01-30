@@ -1,0 +1,390 @@
+<ServiceRegisterAmbulance>:
+    name: 'ambulance_register_form'
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "service_provider"
+        MDLabel:
+            text: "Create new account"
+            font_name: "Roboto"
+            pos_hint: {"center_x":.6,"center_y": .95}
+            size_hint_y:.1
+            font_size: "18sp"
+        ScrollView:
+            GridLayout:
+                id: grid
+                cols: 1
+                padding: dp(10)
+                spacing: dp(20)
+                size_hint_y: None
+                height: self.minimum_height
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    MDTextField:
+                        id: service_provider_name
+#                        required: True
+                        hint_text: 'Name'
+                        font_name: "Roboto"
+                        pos_hint:{'center_x':.5}
+                        size_hint:.9,None
+                        height: "25dp"
+                        multiline: False
+                        write_tab: False
+                        color_mode: 'custom'
+                        line_color_focus: 0, 0, 0, 1
+                        text_color_focus:0,0,0,1
+                        hint_text_color:0,0,0,1
+                        hint_text_color_focus:0,0,0,.5
+
+
+                    MDTextField:
+                        id:service_provider_email
+                        hint_text: "Email"
+#                        required: True
+                        font_name: "Roboto"
+                        pos_hint:{'center_x':.5}
+                        size_hint:.9,None
+                        multiline: False
+                        write_tab: False
+                        color_mode: 'custom'
+                        line_color_focus: 0, 0, 0, 1
+                        text_color_focus:0,0,0,1
+                        hint_text_color:0,0,0,1
+                        hint_text_color_focus:0,0,0,.5
+
+
+                    MDFloatLayout:
+                        size_hint:.9,None
+                        height: "60dp"
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        MDTextField:
+                            id:service_provider_password
+                            hint_text: "Password"
+                            font_name:"Roboto"
+                            helper_text:''
+                            helper_text_mode:  'on_error'
+                            #required: True
+                            pos_hint: {"center_x": .5, "center_y": .5}
+                            cursor_width: "2sp"
+                            multiline: False
+                            write_tab: False
+                            keyboard_suggestions: True
+                            password: not show_password_button.active
+                            write_tab: False
+                            line_color_focus: [75/255, 75/255, 75/255, 1]
+                            hint_text_color_focus: [75/255, 75/255, 75/255, 1]
+                            canvas.before:
+                                Color:
+                                    rgba: [75/255, 75/255, 75/255, 1]
+                        MDIconButton:
+                            id: show_password_button
+                            pos_hint: {"center_x": .9, "center_y": .5}
+                            active: False  # Initial state is password hidden
+                            text_color: [0, 0, 0, 1]
+                            opposite_colors: True
+                            background_palette: "Grey"
+                            background_hue: "500"
+                            elevation_normal: 10
+                            on_release:
+                                self.active = not self.active
+                                service_provider_password.password = not self.active
+                            Image:
+                                source: "images/eye-off.png" if not show_password_button.active else "images/eye.png"
+
+
+                    MDTextField:
+                        id:service_provider_phoneno
+                        hint_text: "Phone No"
+#                       required: True
+                        font_name: "Roboto"
+                        pos_hint:{'center_x':.5}
+                        size_hint:.9,None
+                        height: "30dp"
+                        multiline: False
+                        write_tab: False
+                        color_mode: 'custom'
+                        line_color_focus: 0, 0, 0, 1
+                        text_color_focus:0,0,0,1
+                        hint_text_color:0,0,0,1
+                        hint_text_color_focus:0,0,0,.5
+
+                    MDTextField:
+                        id:service_provider_address
+                        hint_text: "Address"
+#                        required: True
+                        font_name: "Roboto"
+                        pos_hint:{'center_x':.5}
+                        size_hint:.9,None
+                        height: "30dp"
+                        multiline: False
+                        write_tab: False
+                        color_mode: 'custom'
+                        line_color_focus: 0, 0, 0, 1
+                        text_color_focus:0,0,0,1
+                        hint_text_color:0,0,0,1
+                        hint_text_color_focus:0,0,0,.5
+
+
+                    MDTextField:
+                        id: Nation
+                        hint_text: "Nation"
+                        pos_hint: {'center_x': 0.5}
+                        on_focus: if self.focus: root.open_dropdown(self)
+                        font_size: "14sp"
+                        size_hint:.9,None
+                        cursor_width: "2sp"
+                        readonly: True
+                        write_tab: False
+                        theme_text_color: "Custom"
+                        icon_right: 'chevron-down'
+                        color_mode: 'custom'
+                        line_color_focus: 0, 0, 0, 1
+                        text_color_focus:0,0,0,1
+                        hint_text_color:0,0,0,1
+                        hint_text_color_focus:0,0,0,.5
+
+                    MDTextField:
+                        id: State
+                        hint_text: "State"
+                        pos_hint: {'center_x': 0.5}
+                        on_focus: if self.focus: root.open_dropdown2(self)
+                        font_size: "14sp"
+                        size_hint:.9,None
+                        cursor_width: "2sp"
+                        readonly: True
+                        write_tab: False
+                        theme_text_color: "Custom"
+                        icon_right: 'chevron-down'
+                        color_mode: 'custom'
+                        line_color_focus: 0, 0, 0, 1
+                        text_color_focus:0,0,0,1
+                        hint_text_color:0,0,0,1
+                        hint_text_color_focus:0,0,0,.5
+                        icon_right_color:0,0,0,1
+                        icon_right_color_focus:0,0,0,.5
+
+
+                    MDTextField:
+                        id:service_provider_pincode
+                        hint_text: "PIN Code"
+#                        required: True
+                        font_name: "Roboto"
+                        font_size: "14sp"
+                        pos_hint:{'center_x':.5}
+                        size_hint:.9,None
+                        height: "30dp"
+                        multiline: False
+                        write_tab: False
+                        color_mode: 'custom'
+                        line_color_focus: 0, 0, 0, 1
+                        text_color_focus:0,0,0,1
+                        hint_text_color:0,0,0,1
+                        hint_text_color_focus:0,0,0,.5
+                    MDTextField:
+                        id:extra_info
+                        hint_text: "Vehicle No"
+#                        required: True
+                        font_name: "Roboto"
+                        font_size: "14sp"
+                        pos_hint:{'center_x':.5}
+                        size_hint:.9,None
+                        height: "30dp"
+                        multiline: False
+                        write_tab: False
+                        color_mode: 'custom'
+                        line_color_focus: 0, 0, 0, 1
+                        text_color_focus:0,0,0,1
+                        hint_text_color:0,0,0,1
+                        hint_text_color_focus:0,0,0,.5
+                    MDTextField:
+                        id:extra_info2
+                        hint_text: "Model Year"
+#                        required: True
+                        font_name: "Roboto"
+                        font_size: "14sp"
+                        pos_hint:{'center_x':.5}
+                        size_hint:.9,None
+                        height: "30dp"
+                        multiline: False
+                        write_tab: False
+                        color_mode: 'custom'
+                        line_color_focus: 0, 0, 0, 1
+                        text_color_focus:0,0,0,1
+                        hint_text_color:0,0,0,1
+                        hint_text_color_focus:0,0,0,.5
+                        on_focus: if self.focus: root.show_date_picker(self)
+                        
+
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        padding: dp(10)
+                        spacing: dp(20)
+                        height: self.minimum_height
+                        MDLabel:
+                            text:'Upload Required Documents'
+                            size_hint_y:.1
+                            halign:'center'
+                            font_size: "16sp"
+
+
+
+                    GridLayout:
+                        id: grid
+                        cols: 2
+                        padding: dp(10)
+                        spacing: dp(20)
+                        size_hint_y: None
+                        height: self.minimum_height
+                        MDLabel:
+                            id: Doc_1
+                            text: "1.Vehicle's RC"
+                            font_name: "Roboto"
+                            font_size: "13sp"
+                            pos_hint: {"center_x": .5,'center_y':.5}
+                            height: "15dp"
+                        MDLabel:
+                            id: file_path
+                            text: "None selected 1"  # Initial text when no file is selected
+                            italic: True
+                            color: 0.5, 0.5, 0.5, 1
+                            pos_hint: {"center_x": .8,'center_y':.4}
+                            size_hint_y: None
+                            height: "30dp"
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        padding: dp(10)
+                        spacing: dp(20)
+                        height: self.minimum_height
+                        MDFlatButton:
+                            text: "Select File"
+                            size_hint:.4,.5
+                            on_release: root.file_manager_open('file_path')
+                            pos_hint: {"center_x":.3,'center_y':.5}
+                            background_color: 0, 0, 0, 0
+                            font_name: "Roboto"
+                            font_size: "14sp"
+                            background_color: 0, 0, 0, 0
+                            color: rgba(1, 1, 1, 255)
+                            canvas.before:
+                                Color:
+                                    rgb: rgba(255, 0, 0, 255)
+                                Line:
+                                    width: 1.2
+                                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
+                        MDFlatButton:
+                            id: upload
+                            text: "Upload"
+                            size_hint:.4,.5
+                            pos_hint: {"center_x":.3,'center_y':.5}
+                            background_color: 0, 0, 0, 0
+                            font_name: "Roboto"
+                            font_size: "14sp"
+                            background_color: 0, 0, 0, 0
+                            color: rgba(1, 1, 1, 255)
+                            on_release: root.upload_file("file_path")
+                            canvas.before:
+                                Color:
+                                    rgb: rgba(255, 0, 0, 255)
+                                Line:
+                                    width: 1.2
+                                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
+                    GridLayout:
+                        id: grid
+                        cols: 2
+                        padding: dp(10)
+                        spacing: dp(20)
+                        size_hint_y: None
+                        height: self.minimum_height
+                        MDLabel:
+                            id: Doc_2
+                            text: "2.Driver's DL"
+                            font_name: "Roboto"
+                            font_size: "13sp"
+                            pos_hint: {"center_x": .5,'center_y':.4}
+                            height: "15dp"
+                            required:True
+
+                        MDLabel:
+                            id: file_path2
+                            text: "None selected 2"  # Initial text when no file is selected
+                            italic: True
+                            color: 0.5, 0.5, 0.5, 1
+                            pos_hint: {"center_x": .8,'center_y':.4}
+                            size_hint_y: None
+                            height: "30dp"
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        padding: dp(10)
+                        spacing: dp(20)
+                        height: self.minimum_height
+                        MDFlatButton:
+                            text: "Select File"
+                            size_hint:.4,.5
+                            on_release: root.file_manager_open('file_path2')
+                            pos_hint: {"center_x":.3,'center_y':.5}
+                            background_color: 0, 0, 0, 0
+                            font_name: "Roboto"
+                            font_size: "14sp"
+                            background_color: 0, 0, 0, 0
+                            color: rgba(1, 1, 1, 255)
+                            canvas.before:
+                                Color:
+                                    rgb: rgba(255, 0, 0, 255)
+                                Line:
+                                    width: 1.2
+                                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
+                        MDFlatButton:
+                            id: upload
+                            text: "Upload"
+                            size_hint:.4,.5
+                            pos_hint: {"center_x":.3,'center_y':.5}
+                            background_color: 0, 0, 0, 0
+                            font_name: "Roboto"
+                            font_size: "14sp"
+                            background_color: 0, 0, 0, 0
+                            color: rgba(1, 1, 1, 255)
+                            on_release: root.upload_file("file_path2")
+                            canvas.before:
+                                Color:
+                                    rgb: rgba(255, 0, 0, 255)
+                                Line:
+                                    width: 1.2
+                                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100                            
+
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(20)
+                        spacing: dp(10)
+                        # signup button
+                    Button:
+                        id: service_register
+                        text: "REGISTER"
+                        size_hint: .7,None
+                        height:dp(40)
+                        pos_hint: {"center_x": .5, "center_y": .34}
+                        background_color: 0, 0, 0, 0
+                        font_name: "Roboto"
+                        on_release:
+                            root.hospital_register_form(" ambulance_manager")
+                        canvas.before:
+                            Color:
+                                rgb: rgba(255, 0, 0, 255)
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+                                radius: [5]
